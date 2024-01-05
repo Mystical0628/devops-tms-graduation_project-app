@@ -1,10 +1,10 @@
 - name: Copy App
   copy:
-    src: {{ playbook_dir | dirname }}/src/app
+    src: "{{ playbook_dir | dirname }}/src/app"
     dest: /usr/bin/app
     owner: root
     group: root
     mode: '0711'
 
 - name: Start App
-  shell: app
+  shell: /usr/bin/app

@@ -10,7 +10,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	      sh 'go build -o app'
+        dir('src') {
+	        sh 'go build -o app'
+	      }
       }
     }
 
@@ -25,7 +27,7 @@ pipeline {
     stage('Ansible: Deploy') {
       steps {
         dir('configure') {
-          ansiblePlaybook credentialsId: 'ec2-ssh-key', inventory: 'hosts', playbook: 'jenkins_agents.yaml'
+          ansiblePlaybook credentialsId: 'ec2-ssh-key', inventory: '/home/jenkins/hosts.yaml', playbook: 'deploy.yaml'
         }
       }
     }
