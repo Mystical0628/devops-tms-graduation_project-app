@@ -22,11 +22,11 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
+    stage('Ansible: Deploy') {
       steps {
-        dir('src') {
-	        echo 'Deploying'
-	      }
+        dir('configure') {
+          ansiblePlaybook credentialsId: 'ec2-ssh-key', inventory: 'hosts', playbook: 'jenkins_agents.yaml'
+        }
       }
     }
   }
