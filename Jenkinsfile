@@ -10,9 +10,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-		    dir('src') {
-	        sh 'go version'
-	      }
+	      sh 'go build -o app'
       }
     }
 
