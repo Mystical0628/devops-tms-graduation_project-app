@@ -4,6 +4,7 @@ pipeline {
   }
 
 	tools {
+		ansible 'ansible'
 		go '1.18.1'
 	}
 
