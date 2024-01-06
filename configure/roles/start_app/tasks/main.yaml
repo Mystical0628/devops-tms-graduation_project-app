@@ -16,4 +16,4 @@
   when: app_pid.failed == false
 
 - name: Start App
-  shell: sudo /usr/local/bin/app >/dev/null 2>&1 & echo $! > /usr/local/bin/app.pid
+  shell: nohup /usr/local/bin/app >/usr/local/bin/app.log 2>/usr/local/bin/app.error.log & echo $! > /usr/local/bin/app.pid
