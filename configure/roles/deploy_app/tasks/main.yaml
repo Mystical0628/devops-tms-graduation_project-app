@@ -7,4 +7,4 @@
     mode: '0711'
 
 - name: Start App
-  shell: /usr/bin/app
+  shell: /usr/bin/app >/dev/null 2>&1 &
