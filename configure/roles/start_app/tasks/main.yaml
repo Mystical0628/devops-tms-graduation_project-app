@@ -1,0 +1,19 @@
+- name: Get App PID
+  shell: cat /usr/local/bin/app.pid
+  register: app_pid
+  ignore_errors: yes
+
+- name: Kill App
+  shell: "kill {{ app_pid.stdout }}"
+  ignore_errors: yes
+  when: app_pid.failed == false
+
+- name: Waiting until running app are killed
+  wait_for:
+    path: "/proc/{{ app_pid.stdout }}/status"
+    state: absent
+  ignore_errors: yes
+  when: app_pid.failed == false
+
+- name: Start App
+  shell: sudo /usr/local/bin/app >/dev/null 2>&1 & echo $! > /usr/local/bin/app.pid

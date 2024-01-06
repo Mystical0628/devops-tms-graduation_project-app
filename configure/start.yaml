@@ -1,0 +1,6 @@
+---
+- hosts: app
+  gather_facts: yes
+  become: yes
+  roles:
+    - start_app
