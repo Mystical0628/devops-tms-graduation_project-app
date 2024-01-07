@@ -16,14 +16,6 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps {
-        dir('src') {
-          echo 'Tests accepted'
-        }
-      }
-    }
-
     stage('Ansible') {
       tools {
         ansible 'ansible'
