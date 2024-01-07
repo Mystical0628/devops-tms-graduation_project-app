@@ -30,7 +30,7 @@ pipeline {
       }
 
       stages {
-        stage('Playbook: Deploy') {
+        stage('Ansible: Deploy') {
           steps {
             dir('configure') {
               ansiblePlaybook credentialsId: 'ec2-ssh-key', inventory: '/home/jenkins/hosts.yaml', playbook: 'deploy.yaml'
@@ -38,7 +38,7 @@ pipeline {
           }
         }
 
-        stage('Playbook: Start') {
+        stage('Ansible: Start') {
           steps {
             dir('configure') {
               ansiblePlaybook credentialsId: 'ec2-ssh-key', inventory: '/home/jenkins/hosts.yaml', playbook: 'start.yaml'
