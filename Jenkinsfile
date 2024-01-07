@@ -3,17 +3,16 @@ pipeline {
     label 'amazon'
   }
 
-	tools {
-		ansible 'ansible'
-		go '1.18.1'
-	}
-
   stages {
     stage('Build') {
+      tools {
+        go '1.18.1'
+      }
+
       steps {
         dir('src') {
-	        sh 'go build -o app'
-	      }
+          sh 'go build -o app'
+        }
       }
     }
 
@@ -26,6 +25,10 @@ pipeline {
     }
 
     stage('Ansible') {
+      tools {
+        ansible 'ansible'
+      }
+
       stages {
         stage('Playbook: Deploy') {
           steps {
